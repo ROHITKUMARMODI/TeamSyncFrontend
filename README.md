@@ -19,105 +19,13 @@ Clean UI: Dashboard displays stats like total tasks, completed tasks, and recent
 ![image](https://github.com/user-attachments/assets/fca3f8b7-4825-4984-bb42-4de41f946927)
 ![image](https://github.com/user-attachments/assets/791cd5a1-d532-4d2a-b878-f27bef17ff0a)
 ![image](https://github.com/user-attachments/assets/e889a1ab-2e1f-43c7-a53e-5c0b95acfca9)
+
 ##ERD
+![image](https://github.com/user-attachments/assets/6f77865e-c333-44a5-9995-6d3d20ea6eff)
+![image](https://github.com/user-attachments/assets/ff36eac6-cf4f-4acc-a29d-e37308e22897)
+![image](https://github.com/user-attachments/assets/f731f4f5-ef77-4d45-b0cd-21401de3c411)
+![image](https://github.com/user-attachments/assets/2573000a-410a-42e5-971a-09b419560258)
+![image](https://github.com/user-attachments/assets/1407dd15-500d-4c62-8969-61b874249921)
+![image](https://github.com/user-attachments/assets/8f168bb2-bb14-45da-a202-1fdd3cf51e44)
 
-#Users
-
-+----------------+
-| users          |
-+----------------+
-| _id (PK)       |
-| name           |
-| email          |
-| role_id (FK)   |
-+----------------+
-       |         
-       |  (M:1) Each user has one role
-       |
-       |-------------------+
-                           |
-                     +---------+
-                     | roles   |
-                     +---------+
-                     | _id (PK)|
-                     | role_name|
-                     +---------+
-#Accounts
-
-users (1) ----------- (1:1) accounts
-
-+-------------------+      +------------------+
-| users             |      | accounts         |
-+-------------------+      +------------------+
-| _id (PK)          |      | _id (PK)         |
-| name              |      | user_id (FK)     |
-+-------------------+      | login_info       |
-                           | created_at       |
-                           +------------------+
-#WorkSpaces
-
-users (1) ----------- (0..*) workspaces
-
-+-------------------+      +-------------------+
-| users             |      | workspaces        |
-+-------------------+      +-------------------+
-| _id (PK)          |      | _id (PK)          |
-+-------------------+      | name              |
-                           | created_by (FK)   |
-                           | created_at        |
-                           +-------------------+
- #Members   
- +-----------------+
-workspaces (1) ----------- (0..*) members (0..*) ----------- (1) users
-                                 \                     /
-                                  \                   /
-                                    ----> roles (1)
-
-+-------------------+      +-----------------+      +-------------------+
-| workspaces        |      | members         |      | users             |
-+-------------------+      +-----------------+      +-------------------+
-| _id (PK)          |      | _id (PK)        |      | _id (PK)          |
-+-------------------+      | workspace_id FK |      +-------------------+
-                           | user_id FK      |
-                           | role_id FK      |
- 
-workspaces (1) ----------- (0..*) members (0..*) ----------- (1) users
-                                 \                     /
-                                  \                   /
-                                    ----> roles (1)
-
-+-------------------+      +-----------------+      +-------------------+
-| workspaces        |      | members         |      | users             |
-+-------------------+      +-----------------+      +-------------------+
-| _id (PK)          |      | _id (PK)        |      | _id (PK)          |
-+-------------------+      | workspace_id FK |      +-------------------+
-                           | user_id FK      |
-                           | role_id FK      |
-                           +-----------------+
-#Projects
-workspaces (1) ----------- (0..*) projects
-users (1) ---------------- (0..*) projects
-+-------------------+      +------------------+
-| workspaces        |      | projects         |
-+-------------------+      +------------------+
-| _id (PK)          |      | _id (PK)         |
-+-------------------+      | name             |
-                           | workspace_id (FK)|
-                           | created_by (FK)  |
-                           | created_at       |
-                           +------------------+
-#Tasks
-
-projects (1) ----------- (0..*) tasks
-users (1) --------------- (0..*) tasks (assigned_to)
-
-+-------------------+      +------------------+
-| projects          |      | tasks            |
-+-------------------+      +------------------+
-| _id (PK)          |      | _id (PK)         |
-+-------------------+      | title            |
-                           | project_id (FK)  |
-                           | assigned_to (FK) |
-                           | status           |
-                           | due_date         |
                            +------------------+
