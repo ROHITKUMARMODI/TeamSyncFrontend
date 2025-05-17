@@ -22,6 +22,7 @@ Clean UI: Dashboard displays stats like total tasks, completed tasks, and recent
 ##ERD
 
 #Users
+
 +----------------+
 | users          |
 +----------------+
@@ -42,6 +43,7 @@ Clean UI: Dashboard displays stats like total tasks, completed tasks, and recent
                      | role_name|
                      +---------+
 #Accounts
+
 users (1) ----------- (1:1) accounts
 
 +-------------------+      +------------------+
@@ -53,6 +55,7 @@ users (1) ----------- (1:1) accounts
                            | created_at       |
                            +------------------+
 #WorkSpaces
+
 users (1) ----------- (0..*) workspaces
 
 +-------------------+      +-------------------+
@@ -63,7 +66,8 @@ users (1) ----------- (0..*) workspaces
                            | created_by (FK)   |
                            | created_at        |
                            +-------------------+
- #Members                          +-----------------+
+ #Members   
+ +-----------------+
 workspaces (1) ----------- (0..*) members (0..*) ----------- (1) users
                                  \                     /
                                   \                   /
@@ -102,10 +106,11 @@ users (1) ---------------- (0..*) projects
                            | created_by (FK)  |
                            | created_at       |
                            +------------------+
+#Tasks
+
 projects (1) ----------- (0..*) tasks
 users (1) --------------- (0..*) tasks (assigned_to)
 
-#Tasks
 +-------------------+      +------------------+
 | projects          |      | tasks            |
 +-------------------+      +------------------+
